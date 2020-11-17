@@ -24,7 +24,7 @@ def clearBoard():
 
 def turn(piece):
     print("Select next piece pos.\n(Ex: 'A1', 'c2', etc.):")
-    next_pos = raw_input()
+    next_pos = input()
     valid = False
     while not valid:
         if len(next_pos) == 2:
@@ -49,7 +49,7 @@ def turn(piece):
         else:
             print("Invalid string length.")
             print("Input must be formatted as follows: \nEx: 'A1', 'c2', etc.")
-            next_pos = raw_input()
+            next_pos = input()
 
 def aiTurn(piece):
     minimaxScore = [0,0,0,0,0,0,0,0];
@@ -70,42 +70,16 @@ def aiTurn(piece):
         elif abs(minimaxScore[i]) == abs(bestScore):
             bestSets.append(i)
     playedYet = False
-    for best in bestSets:
-        if minimaxScore[best] == 2:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == -2:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == 1:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == -1:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == 0:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedyet = True
-                    break
-
+    bestScores = [2,-2,1,-1,0]
+    for score in bestScores:
+        for best in bestSets:
+            if minimaxScore[best] == score:
+                for spot in sets[best]:
+                    if board[spot] == " " and playedYet == False:
+                        board[spot] = piece
+                        playedYet = True
+                        break
+                        
 def checkWin():
     for set in sets:
         if board[set[0]] != " ":
@@ -157,7 +131,7 @@ def pveGame():
 
 def main():
     print("PvE (y) or PvP (n)?")
-    mode = raw_input()
+    mode = input()
     if str.lower(mode) == 'y':
         pveGame()
     else:
