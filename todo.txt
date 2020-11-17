@@ -1,0 +1,5 @@
+TODO:
+
+1) fix the infinite loop that occurs when an invalid spot is picked
+2) improve blocking ability of ai, if possible? seems too easy to beat
+
