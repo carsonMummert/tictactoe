@@ -70,42 +70,15 @@ def aiTurn(piece):
         elif abs(minimaxScore[i]) == abs(bestScore):
             bestSets.append(i)
     playedYet = False
-    for best in bestSets:
-        if minimaxScore[best] == 2:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == -2:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == 1:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == -1:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedYet = True
-                    break
-    for best in bestSets:
-        if minimaxScore[best] == 0:
-            for spot in sets[best]:
-                if board[spot] == " " and playedYet == False:
-                    board[spot] = piece
-                    playedyet = True
-                    break
-
+    bestScores = [2,-2,1,-1,0]
+    for score in bestScores:
+        for best in bestSets:
+            if minimaxScore[best] == score:
+                for spot in sets[best]:
+                    if board[spot] == " " and playedYet == False:
+                        board[spot] = piece
+                        playedYet = True
+                        break
 def checkWin():
     for set in sets:
         if board[set[0]] != " ":
