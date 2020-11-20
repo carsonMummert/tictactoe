@@ -24,7 +24,7 @@ def clearBoard():
 
 def turn(piece):
     print("Select next piece pos.\n(Ex: 'A1', 'c2', etc.):")
-    next_pos = raw_input()
+    next_pos = input()
     valid = False
     while not valid:
         if len(next_pos) == 2:
@@ -49,7 +49,7 @@ def turn(piece):
         else:
             print("Invalid string length.")
             print("Input must be formatted as follows: \nEx: 'A1', 'c2', etc.")
-            next_pos = raw_input()
+            next_pos = input()
 
 def aiTurn(piece):
     minimaxScore = [0,0,0,0,0,0,0,0];
@@ -130,7 +130,7 @@ def pveGame():
 
 def main():
     print("PvE (y) or PvP (n)?")
-    mode = raw_input()
+    mode = input()
     if str.lower(mode) == 'y':
         pveGame()
     else:
